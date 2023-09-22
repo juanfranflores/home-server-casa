@@ -4,10 +4,18 @@ services:
     image: eclipse-mosquitto
     container_name: mosquitto
     volumes:
-      - /opt/mosquitto:/mosquitto
-      - /opt/mosquitto/data:/mosquitto/data
-      - /opt/mosquitto/log:/mosquitto/log
+      - ./config:/mosquitto/config/
+      - ./data:/mosquitto/data
+      - ./log:/mosquitto/log
     restart: unless-stopped
     ports:
       - 1883:1883
-      - 9001:9001    
+      - 9001:9001
+    networks:
+      - iot-network
+
+networks:
+  iot-network:
+    name: iot-network
+    driver: bridge
+    external: true
