@@ -6,6 +6,14 @@ services:
     volumes:
       - ./config:/config
       - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 8123:8123
     restart: unless-stopped
     privileged: true
-    network_mode: host
+    networks:
+      - iot-network
+
+networks:
+  iot-network:
+    name: iot-network
+    driver: bridge
