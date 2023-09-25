@@ -4,12 +4,18 @@ services:
     container_name: 'portainer'
     image: portainer/portainer-ce
     ports:
+      - 9000:9000
       - 9443:9443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./data:/data
     restart: always
+    networks:
+      - iot-network
 
-volumes:
-  portainer_data:
+networks:
+  iot-network:
+    name: iot-network
+    driver: bridge
+    external: true
 
