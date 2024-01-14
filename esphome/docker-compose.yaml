@@ -1,0 +1,12 @@
+version: '3'
+services:
+  esphome:
+    container_name: esphome
+    image: esphome/esphome
+    volumes:
+      - ./config:/config # Mount the folder where your ESPHome configuration files are stored
+    privileged: true # Required to be able to access USB devices
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    network_mode: host # Use host networking to access devices on your local network
+    restart: unless-stopped

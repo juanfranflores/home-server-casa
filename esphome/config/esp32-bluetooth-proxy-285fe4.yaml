@@ -1,0 +1,27 @@
+substitutions:
+  name: esp32-bluetooth-proxy-285fe4
+  friendly_name: Bluetooth Proxy
+packages:
+  esphome.bluetooth-proxy: github://esphome/firmware/bluetooth-proxy/esp32-generic.yaml@main
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+  libraries:
+    - "ESPHome"
+api:
+  encryption:
+    key: 1kl9DHRPI9L4IhijSXNYcd7YsuceZ84Y9b1Elyqf7w0=
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+sensor:
+  - platform: xiaomi_miscale
+    mac_address: '50:FB:19:0B:C8:B0'
+    weight:
+      name: "Xiaomi Mi Scale Weight"
+    impedance:
+      name: "Xiaomi Mi Scale Impedance"
